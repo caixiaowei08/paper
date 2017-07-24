@@ -1,0 +1,9 @@
+http://basics.sjtu.edu.cn/news/fmac2017/cfp.html
+1.背景 研究背景 研究现状 问题 意义 等等
+2.已有知识  协议 nuxmv介绍 
+3.建模 
+4.验证
+5.对比分析
+6.结论
+
+A nuXmv-Based Approach to Formal verification and Analysis of Mobile Robots Perpetual Exploration Algorithm
