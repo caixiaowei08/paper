@@ -1,0 +1,699 @@
+nuxmv -int file.smv
+go_msat
+build_boolean_model
+bmc_setup
+check_ltlspec_inc_coi_bmc -k 200
+
+
+read_model
+flatten_hierarchy
+build_flat_model
+encode_variables
+check_ltlspec_inc_coi_bdd -I
+
+  ASSIGN
+     init(pos1) := 1;
+     init(pos2) := 2;
+     init(pos3) := 3;
+
+E:\code\NuSMV>nuxmv -int asyncfull.smv
+*** This is nuXmv 1.1.1 (compiled on Wed Jun  1 10:23:30 2016)
+*** Copyright (c) 2014-2016, Fondazione Bruno Kessler
+
+*** For more information on nuXmv see https://nuxmv.fbk.eu
+*** or email to <nuxmv@list.fbk.eu>.
+*** Please report bugs at https://nuxmv.fbk.eu/bugs
+*** (click on "Login Anonymously" to access)
+*** Alternatively write to <nuxmv@list.fbk.eu>.
+
+*** This version of nuXmv is linked to NuSMV 2.6.0.
+*** For more information on NuSMV see <http://nusmv.fbk.eu>
+*** or email to <nusmv-users@list.fbk.eu>.
+*** Copyright (C) 2010-2014, Fondazione Bruno Kessler
+
+*** This version of nuXmv is linked to the CUDD library version 2.4.1
+*** Copyright (c) 1995-2004, Regents of the University of Colorado
+
+*** This version of nuXmv is linked to the MiniSat SAT solver.
+*** See http://minisat.se/MiniSat.html
+*** Copyright (c) 2003-2006, Niklas Een, Niklas Sorensson
+*** Copyright (c) 2007-2010, Niklas Sorensson
+
+*** This version of nuXmv is linked to MathSAT
+*** Copyright (C) 2009-2016 by Fondazione Bruno Kessler
+*** Copyright (C) 2009-2016 by University of Trento
+*** See http://mathsat.fbk.eu
+
+nuXmv > read_model
+nuXmv > flatten_hierarchy
+WARNING *** Processes are still supported, but deprecated.      ***
+WARNING *** In the future processes may be no longer supported. ***
+
+WARNING *** The model contains PROCESSes or ISAs. ***
+WARNING *** The HRC hierarchy will not be usable. ***
+nuXmv > build_flat_model
+nuXmv > encode_variables
+nuXmv > tiem
+unknown command 'tiem'
+nuXmv > time
+elapse: 42.42 seconds, total: 42.42 seconds
+nuXmv > check_ltlspec_inc_coi_bdd -I
+-- Using COI(0) variables
+*** Error ***
+Inconsistent loopback information found at step 4.
+-- Trace could not be completed.
+-- Counterexample is SPURIOUS at bound 0
+-- Using COI(1) variables
+-- Trace was successfully completed.
+-- Trace executes @ bound 2
+-- Reached fixpoint 2
+-- Property ((((pos3 > pos2 & pos2 > pos1) | (pos1 > pos3 & pos3 > pos2)) | (pos2 > pos1 & pos1 > pos3)) -> ((((((((( G ( F pos1 = 1) &  G ( F pos1 = 2)) &  G ( F pos1 = 3)) &  G ( F pos1 = 4)) &  G ( F pos1 = 5)) &  G ( F pos1 = 6)) &  G ( F pos1 = 7)) &  G ( F pos1 = 8)) &  G ( F pos1 = 9)) &  G ( F pos1 = 10)))  is false
+-- as demonstrated by the following execution sequence
+Trace Description: Incremental COI counter-example
+Trace Type: Counterexample
+  -> State: 1.1 <-
+    pos3 = 3
+    pos2 = 2
+    pos1 = 1
+    r3.phase = lc
+    r3.move = 0
+    r1.move = 0
+    r1.phase = lc
+    r2.move = 0
+    r2.phase = lc
+  -> Input: 1.2 <-
+    _process_selector_ = r1
+    running = FALSE
+    r3.running = FALSE
+    r2.running = FALSE
+    r1.running = TRUE
+  -> State: 1.2 <-
+    r1.move = -1
+    r1.phase = m
+  -> Input: 1.3 <-
+    _process_selector_ = r2
+    r2.running = TRUE
+    r1.running = FALSE
+  -> State: 1.3 <-
+    r2.phase = m
+  -> Input: 1.4 <-
+    _process_selector_ = r3
+    r3.running = TRUE
+    r2.running = FALSE
+  -> State: 1.4 <-
+    r3.phase = m
+    r3.move = 1
+  -> Input: 1.5 <-
+    _process_selector_ = main
+    running = TRUE
+    r3.running = FALSE
+  -> State: 1.5 <-
+  -> Input: 1.6 <-
+    _process_selector_ = r3
+    running = FALSE
+    r3.running = TRUE
+  -> State: 1.6 <-
+    pos3 = 4
+    r3.phase = lc
+    r3.move = 0
+  -> Input: 1.7 <-
+  -> State: 1.7 <-
+    r3.phase = m
+    r3.move = 1
+  -> Input: 1.8 <-
+    _process_selector_ = r1
+    r3.running = FALSE
+    r1.running = TRUE
+  -> State: 1.8 <-
+    pos1 = 10
+    r1.move = 0
+    r1.phase = lc
+  -> Input: 1.9 <-
+    _process_selector_ = r2
+    r2.running = TRUE
+    r1.running = FALSE
+  -> State: 1.9 <-
+    r2.phase = lc
+  -> Input: 1.10 <-
+  -> State: 1.10 <-
+    r2.move = -1
+    r2.phase = m
+  -> Input: 1.11 <-
+  -> State: 1.11 <-
+    pos2 = 1
+    r2.move = 0
+    r2.phase = lc
+  -> Input: 1.12 <-
+    _process_selector_ = r1
+    r2.running = FALSE
+    r1.running = TRUE
+  -> State: 1.12 <-
+    r1.move = -1
+    r1.phase = m
+  -> Input: 1.13 <-
+  -> State: 1.13 <-
+    pos1 = 9
+    r1.move = 0
+    r1.phase = lc
+  -> Input: 1.14 <-
+    _process_selector_ = r2
+    r2.running = TRUE
+    r1.running = FALSE
+  -> State: 1.14 <-
+    r2.move = -1
+    r2.phase = m
+  -> Input: 1.15 <-
+    _process_selector_ = r3
+    r3.running = TRUE
+    r2.running = FALSE
+  -> State: 1.15 <-
+    pos3 = 5
+    r3.phase = lc
+    r3.move = 0
+  -> Input: 1.16 <-
+  -> State: 1.16 <-
+    r3.phase = m
+    r3.move = 1
+  -> Input: 1.17 <-
+  -> State: 1.17 <-
+    pos3 = 6
+    r3.phase = lc
+    r3.move = 0
+  -> Input: 1.18 <-
+    _process_selector_ = r1
+    r3.running = FALSE
+    r1.running = TRUE
+  -> State: 1.18 <-
+    r1.move = 1
+    r1.phase = m
+  -> Input: 1.19 <-
+  -> State: 1.19 <-
+    pos1 = 10
+    r1.move = 0
+    r1.phase = lc
+  -> Input: 1.20 <-
+    _process_selector_ = r2
+    r2.running = TRUE
+    r1.running = FALSE
+  -> State: 1.20 <-
+    pos2 = 10
+    r2.move = 0
+    r2.phase = lc
+  -> Input: 1.21 <-
+    _process_selector_ = r3
+    r3.running = TRUE
+    r2.running = FALSE
+  -> State: 1.21 <-
+    r3.phase = m
+  -> Input: 1.22 <-
+    _process_selector_ = r1
+    r3.running = FALSE
+    r1.running = TRUE
+  -- Loop starts here
+  -> State: 1.22 <-
+    r1.phase = m
+  -> Input: 1.23 <-
+  -> State: 1.23 <-
+    r1.phase = lc
+  -> Input: 1.24 <-
+    _process_selector_ = r2
+    r2.running = TRUE
+    r1.running = FALSE
+  -> State: 1.24 <-
+    r2.phase = m
+  -> Input: 1.25 <-
+    _process_selector_ = r3
+    r3.running = TRUE
+    r2.running = FALSE
+  -> State: 1.25 <-
+    r3.phase = lc
+  -> Input: 1.26 <-
+    _process_selector_ = r1
+    r3.running = FALSE
+    r1.running = TRUE
+  -> State: 1.26 <-
+    r1.phase = m
+  -> Input: 1.27 <-
+    _process_selector_ = r3
+    r3.running = TRUE
+    r1.running = FALSE
+  -> State: 1.27 <-
+    r3.phase = m
+  -> Input: 1.28 <-
+    _process_selector_ = r2
+    r3.running = FALSE
+    r2.running = TRUE
+  -> State: 1.28 <-
+    r2.phase = lc
+nuXmv > time
+elapse: 330.62 seconds, total: 373.05 seconds
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
