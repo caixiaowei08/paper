@@ -1,4 +1,4 @@
-nuxmv -int file.smv
+nuxmv -int fsyncfull.smv
 go_msat
 build_boolean_model
 bmc_setup

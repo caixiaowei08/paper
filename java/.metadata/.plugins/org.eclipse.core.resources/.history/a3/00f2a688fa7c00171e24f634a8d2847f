@@ -1,0 +1,26 @@
+package com.ring.win.cmd;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class Cmd {
+	public static void exec(String cmd) {
+		Runtime rt = Runtime.getRuntime();
+		try {
+			System.currentTimeMillis();
+			Process pro = rt.exec("nuxmv");
+			InputStream is = pro.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+}

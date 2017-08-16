@@ -1,0 +1,38 @@
+package com.ring.win.cmd;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+public class Cmd {
+	public static void exec(String cmd) {
+		Runtime rt = Runtime.getRuntime();
+		try {
+			Long startTime = System.currentTimeMillis();
+			Process pro = rt.exec("nuxmv -int E:\\code\\NuSMV\\fsyncfull.smv");
+			//rt.exec("read_model");
+			//rt.exec("flatten_hierarchy");
+			//rt.exec("build_flat_model");
+			//rt.exec("encode_variables");
+			//Process pro = rt.exec("check_ltlspec_inc_coi_bdd -I");
+			InputStream is = pro.getInputStream();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			String line;
+			while ((line = reader.readLine()) != null) {
+				System.out.println(line);
+			}
+			Long endTime = System.currentTimeMillis();
+			System.out.println(endTime - startTime);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		Cmd.exec("??");
+	}
+	
+	
+}
